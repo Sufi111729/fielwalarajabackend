@@ -1,0 +1,11 @@
+.git
+.github
+frontend
+target
+node_modules
+.m2
+.m2home
+.m2repo
+data
+*.log
+.DS_Store

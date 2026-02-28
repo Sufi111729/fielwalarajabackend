@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: filewalaraja-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:h2:file:/opt/render/project/data/filewalaraja-auth-db;AUTO_SERVER=TRUE
+      - key: SPRING_DATASOURCE_USERNAME
+        value: mdsufi
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: APP_AUTH_MOCK_EMAIL
+        value: "false"
+      - key: APP_AUTH_VERIFICATION_BASE_URL
+        value: https://filewalaraja.vercel.app/auth.html?mode=verify&token=%s
+      - key: SPRING_MAIL_HOST
+        value: smtp.gmail.com
+      - key: SPRING_MAIL_PORT
+        value: "587"
+      - key: SPRING_MAIL_SMTP_AUTH
+        value: "true"
+      - key: SPRING_MAIL_SMTP_STARTTLS
+        value: "true"
+      - key: SPRING_MAIL_SMTP_SSL_TRUST
+        value: smtp.gmail.com
+      - key: SPRING_MAIL_DEBUG
+        value: "false"
+      - key: SPRING_MAIL_USERNAME
+        sync: false
+      - key: SPRING_MAIL_PASSWORD
+        sync: false
