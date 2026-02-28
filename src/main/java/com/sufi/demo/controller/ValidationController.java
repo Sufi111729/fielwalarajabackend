@@ -4,13 +4,16 @@ import com.sufi.demo.service.ImageValidationService;
 import com.sufi.demo.service.ImageValidationService.Meta;
 import com.sufi.demo.service.ImageValidationService.ValidationError;
 import com.sufi.demo.service.ImageValidationService.ValidationResult;
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +38,14 @@ public class ValidationController {
 
   public ValidationController(ImageValidationService imageValidationService) {
     this.imageValidationService = imageValidationService;
+  }
+
+  @GetMapping(value = "/ping", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Map<String, String>> ping() {
+    return ResponseEntity.ok(Map.of(
+        "message", "pong",
+        "time", Instant.now().toString()
+    ));
   }
 
   @PostMapping(value = "/validate", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

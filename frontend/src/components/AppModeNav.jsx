@@ -25,7 +25,7 @@ export default function AppModeNav({ mode = "pan" }) {
         <a href="/" className="flex items-center gap-2">
           <img
             src="/logo-file-wala-raja.svg"
-            alt="File Wala Raja"
+            alt="File Wala Tool"
             className="h-10 w-auto"
             loading="eager"
           />

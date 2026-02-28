@@ -7,7 +7,7 @@ export default function AppFooter() {
             <a href="/" className="inline-flex items-center">
               <img
                 src="/logo-file-wala-raja.svg"
-                alt="File Wala Raja"
+                alt="File Wala Tool"
                 className="h-10 w-auto"
                 loading="lazy"
               />
@@ -53,7 +53,7 @@ export default function AppFooter() {
         </div>
 
         <div className="mt-8 border-t border-slate-200 pt-4 text-xs text-slate-500">
-          © {new Date().getFullYear()} File Wala Raja. All rights reserved.
+          © {new Date().getFullYear()} File Wala Tool. All rights reserved.
         </div>
       </div>
     </footer>

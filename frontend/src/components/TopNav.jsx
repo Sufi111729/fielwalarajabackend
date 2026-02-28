@@ -207,7 +207,7 @@ export default function TopNav({ showChips = false }) {
           <a href="/" className="inline-flex min-w-0 items-center">
             <img
               src="/logo-file-wala-raja.svg"
-              alt="File Wala Raja"
+              alt="File Wala Tool"
               className="h-10 w-auto sm:h-11"
               loading="eager"
             />

@@ -5,7 +5,7 @@ export default function AppHeroStrip({ mode = "pan" }) {
   const title = isPan
     ? "PAN Card Photo and Signature Editor"
     : isHome
-      ? "File Wala Raja Tools"
+      ? "File Wala Tool"
       : "KB Slider Image Editor";
   const subtitle = isPan
     ? "Upload, crop, resize and export PAN-ready JPEG in a few clicks."

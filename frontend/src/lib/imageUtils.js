@@ -16,7 +16,13 @@ export const PRESETS = {
     maxKb: 50
   }
 };
-const API_BASE = import.meta.env.VITE_API_BASE || "https://fielwalarajabackend.onrender.com";
+const RAW_API_BASE = (import.meta.env.VITE_API_BASE || import.meta.env.VITE_API_BASE_URL || "").trim();
+const API_BASE =
+  RAW_API_BASE ||
+  (typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:8080"
+    : "https://fielwalarajabackend.onrender.com");
 
 export function cmToPx(cm, dpi = 200) {
   return Math.round((cm / 2.54) * dpi);

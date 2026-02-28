@@ -1,22 +1,20 @@
-const RAW_API_BASE = (import.meta.env.VITE_API_BASE_URL || "").trim();
+const RAW_API_BASE = (import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_BASE || "").trim();
+const DEFAULT_API_BASE = "https://fielwalarajabackend.onrender.com";
 const IS_LOCAL =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
-const LOCAL_API_BASE = "https://fielwalarajabackend.onrender.com";
+const LOCAL_API_BASE = "http://localhost:8080";
 
 function getApiBases() {
   const bases = [];
   if (RAW_API_BASE) bases.push(RAW_API_BASE);
   if (IS_LOCAL && !bases.includes(LOCAL_API_BASE)) bases.push(LOCAL_API_BASE);
-  return bases;
+  if (!bases.includes(DEFAULT_API_BASE)) bases.push(DEFAULT_API_BASE);
+  return [...new Set(bases)];
 }
 
 async function postJson(path, payload) {
   const bases = getApiBases();
-
-  if (bases.length === 0) {
-    throw new Error("Auth API not configured. Set VITE_API_BASE_URL to your backend URL.");
-  }
 
   let lastError = "";
 

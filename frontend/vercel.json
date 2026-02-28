@@ -1,21 +1,37 @@
 {
   "rewrites": [
-    { "source": "/convert", "destination": "/convert.html" },
-    { "source": "/merge-pdf", "destination": "/index.html" },
-    { "source": "/compress-pdf", "destination": "/kb-editor.html" },
-    { "source": "/jpg-to-pdf", "destination": "/convert.html" },
-    { "source": "/png-to-pdf", "destination": "/convert.html" },
-    { "source": "/img-to-pdf", "destination": "/convert.html" },
-    { "source": "/jpg-to-png", "destination": "/convert.html" },
-    { "source": "/png-to-jpg", "destination": "/convert.html" },
-    { "source": "/pdf-to-word", "destination": "/index.html" },
-    { "source": "/image-resize", "destination": "/pan-editor.html" },
-    { "source": "/image-compress", "destination": "/kb-editor.html" },
-    { "source": "/word-to-pdf", "destination": "/index.html" },
-    { "source": "/excel-to-pdf", "destination": "/index.html" },
-    { "source": "/auth", "destination": "/auth.html" },
-    { "source": "/admin", "destination": "/admin-login.html" },
-    { "source": "/admin/login", "destination": "/admin-login.html" },
-    { "source": "/users", "destination": "/users.html" }
+    { "source": "/convert", "destination": "/convert.html" }
+  ],
+  "redirects": [
+    { "source": "/jpg-to-png", "destination": "/convert?tool=jpg-to-png", "permanent": true },
+    { "source": "/png-to-jpg", "destination": "/convert?tool=png-to-jpg", "permanent": true },
+    { "source": "/jpg-to-pdf", "destination": "/convert?tool=jpg-to-pdf", "permanent": true },
+    { "source": "/png-to-pdf", "destination": "/convert?tool=png-to-pdf", "permanent": true },
+    { "source": "/img-to-pdf", "destination": "/convert?tool=img-to-pdf", "permanent": true },
+    { "source": "/merge-pdf", "destination": "/", "permanent": true },
+    { "source": "/compress-pdf", "destination": "/kb-editor.html", "permanent": true },
+    { "source": "/pdf-to-word", "destination": "/", "permanent": true },
+    { "source": "/word-to-pdf", "destination": "/", "permanent": true },
+    { "source": "/excel-to-pdf", "destination": "/", "permanent": true },
+    { "source": "/image-resize", "destination": "/pan-editor.html", "permanent": true },
+    { "source": "/image-compress", "destination": "/kb-editor.html", "permanent": true },
+    { "source": "/auth", "destination": "/auth.html", "permanent": true },
+    { "source": "/admin", "destination": "/admin-login.html", "permanent": true },
+    { "source": "/admin/login", "destination": "/admin-login.html", "permanent": true },
+    { "source": "/users", "destination": "/users.html", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*).(js|css|png|jpg|jpeg|webp|avif|svg|ico)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    }
   ]
 }

@@ -39,7 +39,7 @@ public class AuthService {
   @Value("${app.auth.session-hours:48}")
   private long sessionHours;
 
-  @Value("${app.auth.allow-otp-log-fallback:true}")
+  @Value("${app.auth.allow-otp-log-fallback:false}")
   private boolean allowOtpLogFallback;
 
   public AuthService(
@@ -277,9 +277,12 @@ public class AuthService {
     if (!sent) {
       if (allowOtpLogFallback) {
         log.warn("OTP email send failed for {}. Fallback OTP: {}", user.getEmail(), token.getToken());
-      } else {
-        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Unable to send OTP email.");
+        return;
       }
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST,
+          "Unable to deliver OTP email. Please check the email address and try again."
+      );
     }
   }
 

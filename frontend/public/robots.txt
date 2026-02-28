@@ -1,8 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 Disallow: /admin/
+Disallow: /users
+Disallow: /users/
+Disallow: /auth
+Disallow: /auth.html
 Disallow: /api/
-Disallow: /private/
 
 Sitemap: https://filewalaraja.vercel.app/sitemap.xml
 

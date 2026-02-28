@@ -2,7 +2,13 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { downloadBlob } from "../lib/imageUtils";
 
-const apiBase = import.meta.env.VITE_API_BASE || "http://localhost:8080";
+const rawApiBase = (import.meta.env.VITE_API_BASE || import.meta.env.VITE_API_BASE_URL || "").trim();
+const apiBase =
+  rawApiBase ||
+  (typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:8080"
+    : "https://fielwalarajabackend.onrender.com");
 
 export default function PreviewDownload({ result, presetId }) {
   const [validateState, setValidateState] = useState({

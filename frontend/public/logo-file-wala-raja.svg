@@ -1,16 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 260" role="img" aria-label="File Wala Raja logo">
-  <rect width="820" height="260" fill="none"/>
-  <g transform="translate(16,18)">
-    <path d="M42 72c8-2 16 4 18 12l7 41 33-8c5-1 10 0 14 3l36 34c3 3 8 4 12 3l109-15c9-1 17 6 17 15v84c0 7-5 13-12 14L75 291c-10 2-19-5-21-15L29 111c-1-9 4-17 13-19z" transform="scale(0.8)" fill="#e23b2a"/>
-    <path d="M97 67 205 51c4-1 9 1 12 4l69 56c3 2 4 6 4 9v91c0 7-5 13-12 14L88 261c-8 2-16-4-18-12L45 96c-2-10 5-19 15-21z" transform="scale(0.8)" fill="#fff" stroke="#1f2128" stroke-width="13" stroke-linejoin="round"/>
-    <path d="M175 58v62h72" transform="scale(0.8)" fill="none" stroke="#1f2128" stroke-width="13" stroke-linejoin="round"/>
-    <path d="M72 10 90 28l13-34 26 31 27-28 4 54-95 17z" transform="scale(0.8)" fill="#e23b2a"/>
-    <circle cx="58" cy="17" r="8" fill="#e23b2a"/>
-    <circle cx="124" cy="-9" r="8" fill="#e23b2a"/>
-    <circle cx="186" cy="-1" r="8" fill="#e23b2a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 260" role="img" aria-label="File Wala Tool logo">
+  <defs>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a3d"/>
+      <stop offset="100%" stop-color="#e23b2a"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2b4d"/>
+      <stop offset="100%" stop-color="#101827"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="980" height="260" fill="none"/>
+
+  <g transform="translate(36 38)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="184" height="184" rx="32" fill="url(#dark)"/>
+    <path d="M44 45h78l34 34v60c0 12-10 22-22 22H44c-12 0-22-10-22-22V67c0-12 10-22 22-22z" fill="#f8fafc"/>
+    <path d="M122 45v34h34z" fill="#dce5f3"/>
+    <rect x="46" y="96" width="86" height="13" rx="6.5" fill="#c9d5e8"/>
+    <rect x="46" y="119" width="64" height="13" rx="6.5" fill="#c9d5e8"/>
+    <circle cx="152" cy="152" r="28" fill="url(#accent)"/>
+    <path d="M142 152h20M152 142v20" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
   </g>
-  <g transform="translate(300,48)" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="800">
-    <text x="0" y="86" font-size="94" fill="#1f2128">File Wala</text>
-    <text x="0" y="190" font-size="94" fill="#e23b2a">Raja</text>
+
+  <g transform="translate(264 74)">
+    <text x="0" y="72" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="74" font-weight="800" letter-spacing="0.4" fill="#111827">File Wala</text>
+    <text x="0" y="146" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="74" font-weight="800" letter-spacing="0.4" fill="#e23b2a">Tool</text>
+    <text x="2" y="178" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="2.8" fill="#64748b">FAST DOCUMENT UTILITIES</text>
   </g>
 </svg>

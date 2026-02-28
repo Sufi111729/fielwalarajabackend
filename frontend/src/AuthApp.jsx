@@ -54,7 +54,9 @@ export default function AuthApp() {
         lastName: signupForm.lastName,
         email: signupForm.email
       });
-      setMessage(res.message || "OTP sent to your email.");
+      const normalizedEmail = (res.email || signupForm.email || "").trim().toLowerCase();
+      setSignupForm((p) => ({ ...p, email: normalizedEmail }));
+      setMessage(res.message || `OTP sent to ${normalizedEmail}.`);
       setSignupStep(2);
     } catch (err) {
       setError(err.message);
@@ -105,7 +107,9 @@ export default function AuthApp() {
     try {
       setBusy(true);
       const res = await resendVerification(signupForm.email);
-      setMessage(res.message || "OTP resent successfully.");
+      const normalizedEmail = (res.email || signupForm.email || "").trim().toLowerCase();
+      setSignupForm((p) => ({ ...p, email: normalizedEmail }));
+      setMessage(res.message || `OTP resent to ${normalizedEmail}.`);
     } catch (err) {
       setError(err.message);
     } finally {
