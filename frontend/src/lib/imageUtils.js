@@ -16,7 +16,7 @@ export const PRESETS = {
     maxKb: 50
   }
 };
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8080";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://fielwalarajabackend.onrender.com";
 
 export function cmToPx(cm, dpi = 200) {
   return Math.round((cm / 2.54) * dpi);

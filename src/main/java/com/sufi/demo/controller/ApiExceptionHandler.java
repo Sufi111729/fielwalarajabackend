@@ -29,5 +29,10 @@ public class ApiExceptionHandler {
         .orElse("Validation failed.");
     return ResponseEntity.badRequest().body(Map.of("success", false, "message", message));
   }
-}
 
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<Map<String, Object>> handleAny(Exception ex) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(Map.of("success", false, "message", "Internal server error. Please retry."));
+  }
+}

@@ -13,7 +13,10 @@ import java.time.Instant;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthService {
+  private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
   private final AppUserRepository userRepository;
   private final VerificationTokenRepository verificationTokenRepository;
@@ -34,6 +38,9 @@ public class AuthService {
 
   @Value("${app.auth.session-hours:48}")
   private long sessionHours;
+
+  @Value("${app.auth.allow-otp-log-fallback:true}")
+  private boolean allowOtpLogFallback;
 
   public AuthService(
       AppUserRepository userRepository,
@@ -248,15 +255,31 @@ public class AuthService {
   private void createAndSendOtp(AppUser user) {
     verificationTokenRepository.deleteByUser(user);
 
-    VerificationToken token = new VerificationToken();
-    token.setUser(user);
-    token.setToken(generateOtp());
-    token.setExpiresAt(Instant.now().plus(Duration.ofMinutes(verifyTokenMinutes)));
-    verificationTokenRepository.save(token);
+    VerificationToken token = null;
+    for (int i = 0; i < 5; i += 1) {
+      try {
+        token = new VerificationToken();
+        token.setUser(user);
+        token.setToken(generateOtp());
+        token.setExpiresAt(Instant.now().plus(Duration.ofMinutes(verifyTokenMinutes)));
+        verificationTokenRepository.save(token);
+        break;
+      } catch (DataIntegrityViolationException ex) {
+        token = null;
+      }
+    }
+
+    if (token == null) {
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to generate OTP.");
+    }
 
     boolean sent = verificationMailService.sendVerificationOtp(user.getEmail(), user.getFullName(), token.getToken());
     if (!sent) {
-      throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Unable to send OTP email.");
+      if (allowOtpLogFallback) {
+        log.warn("OTP email send failed for {}. Fallback OTP: {}", user.getEmail(), token.getToken());
+      } else {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Unable to send OTP email.");
+      }
     }
   }
 

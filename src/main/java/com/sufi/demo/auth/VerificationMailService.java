@@ -6,7 +6,6 @@ import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class VerificationMailService {
 
     try {
       MimeMessage mimeMessage = mailSender.createMimeMessage();
-      MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, StandardCharsets.UTF_8.name());
+      MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, StandardCharsets.UTF_8.name());
       helper.setFrom(fromEmail);
       helper.setTo(toEmail);
       helper.setReplyTo(fromEmail);
@@ -54,36 +53,51 @@ public class VerificationMailService {
           File Wala Raja Team
           """.formatted(safeName, otpCode);
       String htmlText = """
-          <div style="background:#f8fafc;padding:24px;font-family:Arial,sans-serif;color:#0f172a;">
-            <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
-              <div style="background:#dc2626;color:#ffffff;padding:16px 20px;font-size:18px;font-weight:700;">
-                File Wala Raja
-              </div>
-              <div style="padding:20px;">
-                <p style="margin:0 0 12px 0;font-size:14px;">Dear %s,</p>
-                <p style="margin:0 0 14px 0;font-size:14px;color:#334155;">
-                  Use the following OTP to verify your email address.
-                </p>
-                <div style="margin:0 0 14px 0;padding:14px;border:1px dashed #dc2626;border-radius:10px;background:#fff7f7;text-align:center;">
-                  <span style="font-size:30px;letter-spacing:6px;font-weight:700;color:#b91c1c;">%s</span>
-                </div>
-                <p style="margin:0 0 8px 0;font-size:13px;color:#475569;">OTP validity: <strong>30 minutes</strong></p>
-                <p style="margin:0;font-size:12px;color:#64748b;">
-                  If you did not request this OTP, you can safely ignore this email.
-                </p>
-              </div>
-              <div style="padding:12px 20px;background:#f1f5f9;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b;">
-                Regards, File Wala Raja Team
-              </div>
-            </div>
-          </div>
+          <!doctype html>
+          <html>
+            <body style="margin:0;padding:0;background:#f8fafc;font-family:Arial,sans-serif;color:#0f172a;">
+              <table role="presentation" width="100%%" cellspacing="0" cellpadding="0" style="background:#f8fafc;padding:24px 0;">
+                <tr>
+                  <td align="center">
+                    <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+                      <tr>
+                        <td style="background:#dc2626;color:#ffffff;padding:16px 20px;font-size:20px;font-weight:700;">
+                          File Wala Raja
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:20px;">
+                          <p style="margin:0 0 10px 0;font-size:14px;">Dear %s,</p>
+                          <p style="margin:0 0 14px 0;font-size:14px;color:#334155;">
+                            Use this OTP to verify your email address.
+                          </p>
+                          <div style="margin:0 0 14px 0;padding:14px;border:1px dashed #dc2626;border-radius:10px;background:#fff7f7;text-align:center;">
+                            <span style="font-size:30px;letter-spacing:6px;font-weight:700;color:#b91c1c;">%s</span>
+                          </div>
+                          <p style="margin:0 0 8px 0;font-size:13px;color:#475569;">OTP validity: <strong>30 minutes</strong></p>
+                          <p style="margin:0;font-size:12px;color:#64748b;">
+                            If you did not request this OTP, you can safely ignore this email.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:12px 20px;background:#f1f5f9;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b;">
+                          Regards, File Wala Raja Team
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
           """.formatted(safeName, otpCode);
       helper.setText(plainText, htmlText);
 
       mailSender.send(mimeMessage);
       log.info("OTP email sent to {}", toEmail);
       return true;
-    } catch (MailException | MessagingException e) {
+    } catch (MessagingException | RuntimeException e) {
       log.error("Failed to send verification email to {}", toEmail, e);
       return false;
     }

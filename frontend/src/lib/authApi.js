@@ -2,7 +2,7 @@ const RAW_API_BASE = (import.meta.env.VITE_API_BASE_URL || "").trim();
 const IS_LOCAL =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
-const LOCAL_API_BASE = "http://localhost:8080";
+const LOCAL_API_BASE = "https://fielwalarajabackend.onrender.com";
 
 function getApiBases() {
   const bases = [];

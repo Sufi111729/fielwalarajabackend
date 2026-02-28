@@ -2,7 +2,7 @@ const RAW_API_BASE = (import.meta.env.VITE_API_BASE_URL || "").trim();
 const IS_LOCAL =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
-const API_BASE = RAW_API_BASE || (IS_LOCAL ? "http://localhost:8080" : "");
+const API_BASE = RAW_API_BASE || (IS_LOCAL ? "https://fielwalarajabackend.onrender.com" : "");
 
 async function parseResponse(res) {
   const raw = await res.text().catch(() => "");
