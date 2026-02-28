@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    { "source": "/convert", "destination": "/convert.html" },
+    { "source": "/merge-pdf", "destination": "/index.html" },
+    { "source": "/compress-pdf", "destination": "/kb-editor.html" },
+    { "source": "/jpg-to-pdf", "destination": "/convert.html" },
+    { "source": "/png-to-pdf", "destination": "/convert.html" },
+    { "source": "/img-to-pdf", "destination": "/convert.html" },
+    { "source": "/jpg-to-png", "destination": "/convert.html" },
+    { "source": "/png-to-jpg", "destination": "/convert.html" },
+    { "source": "/pdf-to-word", "destination": "/index.html" },
+    { "source": "/image-resize", "destination": "/pan-editor.html" },
+    { "source": "/image-compress", "destination": "/kb-editor.html" },
+    { "source": "/word-to-pdf", "destination": "/index.html" },
+    { "source": "/excel-to-pdf", "destination": "/index.html" },
+    { "source": "/auth", "destination": "/auth.html" },
+    { "source": "/admin", "destination": "/admin-login.html" },
+    { "source": "/admin/login", "destination": "/admin-login.html" },
+    { "source": "/users", "destination": "/users.html" }
+  ]
+}

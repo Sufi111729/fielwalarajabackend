@@ -39,3 +39,8 @@ data/
 
 ### Docker/OS ###
 .docker/
+
+### Frontend Build Artifacts ###
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 260" role="img" aria-label="File Wala Raja logo">
+  <rect width="820" height="260" fill="none"/>
+  <g transform="translate(16,18)">
+    <path d="M42 72c8-2 16 4 18 12l7 41 33-8c5-1 10 0 14 3l36 34c3 3 8 4 12 3l109-15c9-1 17 6 17 15v84c0 7-5 13-12 14L75 291c-10 2-19-5-21-15L29 111c-1-9 4-17 13-19z" transform="scale(0.8)" fill="#e23b2a"/>
+    <path d="M97 67 205 51c4-1 9 1 12 4l69 56c3 2 4 6 4 9v91c0 7-5 13-12 14L88 261c-8 2-16-4-18-12L45 96c-2-10 5-19 15-21z" transform="scale(0.8)" fill="#fff" stroke="#1f2128" stroke-width="13" stroke-linejoin="round"/>
+    <path d="M175 58v62h72" transform="scale(0.8)" fill="none" stroke="#1f2128" stroke-width="13" stroke-linejoin="round"/>
+    <path d="M72 10 90 28l13-34 26 31 27-28 4 54-95 17z" transform="scale(0.8)" fill="#e23b2a"/>
+    <circle cx="58" cy="17" r="8" fill="#e23b2a"/>
+    <circle cx="124" cy="-9" r="8" fill="#e23b2a"/>
+    <circle cx="186" cy="-1" r="8" fill="#e23b2a"/>
+  </g>
+  <g transform="translate(300,48)" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="800">
+    <text x="0" y="86" font-size="94" fill="#1f2128">File Wala</text>
+    <text x="0" y="190" font-size="94" fill="#e23b2a">Raja</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+/convert /convert.html 200
+/merge-pdf /index.html 200
+/compress-pdf /kb-editor.html 200
+/jpg-to-pdf /convert.html 200
+/png-to-pdf /convert.html 200
+/img-to-pdf /convert.html 200
+/jpg-to-png /convert.html 200
+/png-to-jpg /convert.html 200
+/pdf-to-word /index.html 200
+/image-resize /pan-editor.html 200
+/image-compress /kb-editor.html 200
+/word-to-pdf /index.html 200
+/excel-to-pdf /index.html 200
+/auth /auth.html 200
+/admin /admin-login.html 200
+/admin/login /admin-login.html 200
+/users /users.html 200
